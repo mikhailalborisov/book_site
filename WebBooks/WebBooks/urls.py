@@ -18,13 +18,13 @@ from django.urls import path, include
 from catalog import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path("", views.index, name="index"),
     path("admin/", admin.site.urls),
-    path("book/", views.BookListView.as_view(), name='books'),
-    path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
-    path("authors/", views.AuthorListView.as_view(), name='authors'),
-    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
+    path("book/", views.BookListView.as_view(), name="books"),
+    path(r"^book/(?P<pk>\d+)$", views.BookDetailView.as_view(), name="book-detail"),
+    path("authors/", views.AuthorListView.as_view(), name="authors"),
+    path("mybooks/", views.LoanedBooksByUserListView.as_view(), name="my-borrowed"),
 ]
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]

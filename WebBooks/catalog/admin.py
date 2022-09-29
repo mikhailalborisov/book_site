@@ -12,11 +12,11 @@ admin.site.register(Status)
 # Register your models here.
 # Определения к классу администратор
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('last_name',
-                    'first_name',)
-    fields = ['first_name',
-              'last_name',
-              ('date_of_birth', 'date_of_death')]
+    list_display = (
+        "last_name",
+        "first_name",
+    )
+    fields = ["first_name", "last_name", ("date_of_birth", "date_of_death")]
 
 
 # Зарегестрируйте класс admin с соответствующей моделью
@@ -30,27 +30,20 @@ class BooksInstanceInline(admin.TabularInline):
 # Регистрируем классы администратора для книг
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title',
-                    'genre',
-                    'language',
-                    'display_author')
-    list_filter = ('genre', 'author')
+    list_display = ("title", "genre", "language", "display_author")
+    list_filter = ("genre", "author")
     inlines = [BooksInstanceInline]
 
 
 # Регистрируем классы администратора для экземпляра книги
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
-    list_filter = ('book', 'status')
+    list_display = ("book", "status", "borrower", "due_back", "id")
+    list_filter = ("book", "status")
     fieldsets = (
-        ('Экземпляр книги', {
-            'fields': ('book', 'imprint', 'inv_nom')
-        }),
-        ('Статус и окончание его действия', {
-            'fields': ('status', 'due_back', 'borrower')
-        }),
+        ("Экземпляр книги", {"fields": ("book", "imprint", "inv_nom")}),
+        (
+            "Статус и окончание его действия",
+            {"fields": ("status", "due_back", "borrower")},
+        ),
     )
-
-
-
